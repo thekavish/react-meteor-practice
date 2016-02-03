@@ -3,14 +3,18 @@ if (Meteor.isClient) {
         render() {
             return ( 
                 <div className="ui container">
-                    <h3>Welcome, {this.props.name}!</h3>
-                    <h4>Your email address is {this.props.email}</h4>
+                <p>Hello, <input type="text" placeholder="Your name here" />!It is {this.props.date.toTimeString()}</p>
                 </div>
             );
         }
     });
+
     Meteor.startup(function() {
-        ReactDOM.render( <App name='Kavish' email='kavish619@gmail.com'/> , document.getElementById("render-target"));
+        setInterval(function() {
+            ReactDOM.render(
+                <App date={new Date()} />,document.getElementById('render-target')
+            );
+        }, 1000);
     });
 }
 
